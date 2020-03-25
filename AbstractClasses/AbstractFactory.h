@@ -1,9 +1,9 @@
 #ifndef ABSTRACTFACTORY_H
 #define ABSTRACTFACTORY_H
 
-#include "ClassUnit.h"
-#include "MethodUnit.h"
-#include "PrintOperatorUnit.h"
+#include "AbstractClasses/ClassUnit.h"
+#include "AbstractClasses/MethodUnit.h"
+#include "AbstractClasses/PrintOperatorUnit.h"
 
 const std::vector<std::string> ClassUnit::ACCESS_MODIFIERS = {"public", "protected", "private"};
 
