@@ -3,8 +3,8 @@
 #include "CPlusPlusClasses/CPlusPlusFactory.h"
 
 std::string generateProgram() {
-    AbstractFactory *factory = new CPlusPlusFactory();
-    ClassUnit *myClass = factory->CreateClassUnit("MyClass");
+    std::shared_ptr<AbstractFactory> factory(new CPlusPlusFactory());
+    std::shared_ptr<ClassUnit> myClass(factory->CreateClassUnit("MyClass"));
     myClass->add(std::shared_ptr<MethodUnit>(factory->CreateMethodUnit("testFunc1", "void", 0)), ClassUnit::PUBLIC);
     myClass->add(std::shared_ptr<MethodUnit>(factory->CreateMethodUnit("testFunc2", "void", MethodUnit::STATIC)), ClassUnit::PRIVATE);
     myClass->add(std::shared_ptr<MethodUnit>(factory->CreateMethodUnit("testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST)), ClassUnit::PUBLIC);
