@@ -23,8 +23,7 @@ MethodUnit::VIRTUAL | MethodUnit::CONST ),
     );
     auto method = std::make_shared< MethodUnit >( "testFunc4",
 "void", MethodUnit::STATIC );
-    method->add( std::make_shared< PrintOperatorUnit >( R"(Hello,
-world!\n)" ) );
+    method->add( std::make_shared< PrintOperatorUnit >( R"(Hello, world!\n)" ) );
     myClass.add( method, ClassUnit::PROTECTED );
     return myClass.compile();
 }
