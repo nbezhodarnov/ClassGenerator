@@ -1,11 +1,12 @@
-#ifndef METHODUNIT_H
-#define METHODUNIT_H
+#ifndef CPLUSPLUSMETHODUNIT_H
+#define CPLUSPLUSMETHODUNIT_H
 
 #include <vector>
 
-#include "Unit.h"
+#include "AbstractClasses/Unit.h"
+#include "AbstractClasses/MethodUnit.h"
 
-class MethodUnit: public Unit {
+class CPlusPlusMethodUnit: public MethodUnit {
 public:
     enum Modifier {
         STATIC       = 1,
@@ -13,12 +14,12 @@ public:
         VIRTUAL      = 4
     };
 public:
-    MethodUnit(const std::string& name, const std::string& returnType, Flags flags):
-        m_name(name), m_returnType(returnType), m_flags(flags) {}
-    virtual void add(const std::shared_ptr<Unit>& unit, Flags /* flags */ = 0) {
+    CPlusPlusMethodUnit(const std::string& name, const std::string& returnType, Flags flags):
+        MethodUnit(name, returnType, flags) {}
+    void add(const std::shared_ptr<Unit>& unit, Flags /* flags */ = 0) {
         m_body.push_back(unit);
     }
-    virtual std::string compile(unsigned int level = 0) const = 0; /*{
+    virtual std::string compile(unsigned int level = 0) const {
         std::string result = generateShift(level);
         if(m_flags & STATIC) {
             result += "static ";
@@ -36,12 +37,7 @@ public:
         }
         result += generateShift( level ) + "}\n";
         return result;
-    }*/
-protected:
-    std::string m_name;
-    std::string m_returnType;
-    Flags m_flags;
-    std::vector<std::shared_ptr<Unit>> m_body;
+    }
 };
 
-#endif // METHODUNIT_H
+#endif // CPLUSPLUSMETHODUNIT_H
