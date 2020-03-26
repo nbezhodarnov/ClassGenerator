@@ -9,7 +9,7 @@
 
 class CPlusPlusFactory: public AbstractFactory {
 public:
-    ClassUnit* CreateClassUnit(const std::string& name) const {
+    ClassUnit* CreateClassUnit(const std::string& name, Unit::Flags) const {
         return new CPlusPlusClassUnit(name);
     }
     MethodUnit* CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
@@ -18,6 +18,7 @@ public:
     PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
         return new CPlusPlusPrintOperatorUnit(text);
     }
+    ~CPlusPlusFactory() {};
 };
 
 #endif // CPLUSPLUSFACTORY_H
