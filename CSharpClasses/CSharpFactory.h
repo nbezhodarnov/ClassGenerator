@@ -18,6 +18,7 @@ public:
     PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
         return new CSharpPrintOperatorUnit(text);
     }
+    ~CSharpFactory() {};
 };
 
 #endif // CSHARPFACTORY_H

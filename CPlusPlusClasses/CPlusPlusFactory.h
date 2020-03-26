@@ -18,6 +18,7 @@ public:
     PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
         return new CPlusPlusPrintOperatorUnit(text);
     }
+    ~CPlusPlusFactory() {};
 };
 
 #endif // CPLUSPLUSFACTORY_H
