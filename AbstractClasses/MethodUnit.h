@@ -10,7 +10,10 @@ public:
     enum Modifier {
         STATIC       = 1,
         CONST        = 2,
-        VIRTUAL      = 4
+        VIRTUAL      = 4,
+        ABSTRACT     = 8,
+        ASYNC        = 16,
+        UNSAVE       = 32
     };
 public:
     MethodUnit(const std::string& name, const std::string& returnType, Flags flags):

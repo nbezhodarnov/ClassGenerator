@@ -33,6 +33,10 @@ HEADERS += \
     CPlusPlusClasses/CPlusPlusFactory.h \
     CPlusPlusClasses/CPlusPlusMethodUnit.h \
     CPlusPlusClasses/CPlusPlusPrintOperatorUnit.h \
+    CSharpClasses/CSharpClassUnit.h \
+    CSharpClasses/CSharpFactory.h \
+    CSharpClasses/CSharpMethodUnit.h \
+    CSharpClasses/CSharpPrintOperatorUnit.h \
     ClassUnit.h \
     MethodUnit.h \
     PrintOperatorUnit.h \

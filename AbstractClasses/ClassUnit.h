@@ -11,9 +11,12 @@ class ClassUnit: public Unit
 {
 public:
     enum AccessModifier {
-         PUBLIC,
-         PROTECTED,
-         PRIVATE
+        PUBLIC,
+        PROTECTED,
+        PRIVATE,
+        INTERNAL,
+        PROTECTED_INTERNAL,
+        PRIVATE_PROTECTED
     };
     static const std::vector<std::string> ACCESS_MODIFIERS;
 public:

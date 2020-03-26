@@ -1,9 +1,10 @@
 #include <memory>
 
 #include "CPlusPlusClasses/CPlusPlusFactory.h"
+#include "CSharpClasses/CSharpFactory.h"
 
 std::string generateProgram() {
-    std::shared_ptr<AbstractFactory> factory(new CPlusPlusFactory());
+    std::shared_ptr<AbstractFactory> factory(new CSharpFactory());
     std::shared_ptr<ClassUnit> myClass(factory->CreateClassUnit("MyClass"));
     myClass->add(std::shared_ptr<MethodUnit>(factory->CreateMethodUnit("testFunc1", "void", 0)), ClassUnit::PUBLIC);
     myClass->add(std::shared_ptr<MethodUnit>(factory->CreateMethodUnit("testFunc2", "void", MethodUnit::STATIC)), ClassUnit::PRIVATE);
