@@ -24,7 +24,24 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    AbstractClasses/AbstractFactory.h \
+    AbstractClasses/ClassUnit.h \
+    AbstractClasses/MethodUnit.h \
+    AbstractClasses/PrintOperatorUnit.h \
+    AbstractClasses/Unit.h \
+    CPlusPlusClasses/CPlusPlusClassUnit.h \
+    CPlusPlusClasses/CPlusPlusFactory.h \
+    CPlusPlusClasses/CPlusPlusMethodUnit.h \
+    CPlusPlusClasses/CPlusPlusPrintOperatorUnit.h \
+    CSharpClasses/CSharpClassUnit.h \
+    CSharpClasses/CSharpFactory.h \
+    CSharpClasses/CSharpMethodUnit.h \
+    CSharpClasses/CSharpPrintOperatorUnit.h \
     ClassUnit.h \
     MethodUnit.h \
     PrintOperatorUnit.h \
-    Unit.h
+    Unit.h \
+    JavaClasses/JavaClassUnit.h \
+    JavaClasses/JavaFactory.h \
+    JavaClasses/JavaMethodUnit.h \
+    JavaClasses/JavaPrintOperatorUnit.h
