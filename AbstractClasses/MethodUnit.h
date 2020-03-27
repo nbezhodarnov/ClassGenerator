@@ -13,7 +13,9 @@ public:
         VIRTUAL      = 4,
         ABSTRACT     = 8,
         ASYNC        = 16,
-        UNSAVE       = 32
+        UNSAVE       = 32,
+        FINAL        = 64,
+        SYNCHRONIZED  = 128
     };
 public:
     MethodUnit(const std::string& name, const std::string& returnType, Flags flags):

@@ -2,17 +2,21 @@
 
 #include "CPlusPlusClasses/CPlusPlusFactory.h"
 #include "CSharpClasses/CSharpFactory.h"
+#include "JavaClasses/JavaFactory.h"
 
 std::string generateProgram() {
     std::string result;
     AbstractFactory* factory;
-    for (int i = 0; i < 2; i++){
+    for (int i = 0; i < 3; i++){
         switch (i) {
             case 0:
                 factory = new CPlusPlusFactory();
                 break;
             case 1:
                 factory = new CSharpFactory();
+                break;
+            case 2:
+                factory = new JavaFactory();
                 break;
         }
         std::shared_ptr<ClassUnit> myClass(factory->CreateClassUnit("MyClass"));

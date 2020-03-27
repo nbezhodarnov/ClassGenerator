@@ -1,35 +1,30 @@
-#ifndef CSHARPMETHODUNIT_H
-#define CSHARPMETHODUNIT_H
+#ifndef JAVAMETHODUNIT_H
+#define JAVAMETHODUNIT_H
 
 #include <vector>
 
 #include "AbstractClasses/Unit.h"
 #include "AbstractClasses/MethodUnit.h"
 
-class CSharpMethodUnit: public MethodUnit {
+class JavaMethodUnit: public MethodUnit {
 public:
-    CSharpMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
+    JavaMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
         MethodUnit(name, returnType, flags) {}
     void add(const std::shared_ptr<Unit>& unit, Unit::Flags /* flags */ = 0) {
         m_body.push_back(unit);
     }
     std::string compile(unsigned int level = 0) const {
         std::string result = ""; //generateShift(level);
-        if(m_flags & MethodUnit::ASYNC) {
-            result += "asyns ";
+        if(m_flags & MethodUnit::SYNCHRONIZED) {
+            result += "synchronized ";
         }
-        if(m_flags & MethodUnit::UNSAVE) {
-            result += "unsave ";
+        if(m_flags & MethodUnit::STATIC) {
+            result += "static ";
         }
-        if( m_flags & MethodUnit::VIRTUAL) {
-            result += "virtual ";
-        } else {
-            if(m_flags & MethodUnit::STATIC) {
-                result += "static ";
-            }
-            if(m_flags & MethodUnit::ABSTRACT) {
-                result += "abstract ";
-            }
+        if(m_flags & MethodUnit::ABSTRACT) {
+            result += "abstract ";
+        } else if (m_flags & MethodUnit::FINAL) {
+            result += "final ";
         }
         result += m_returnType + " ";
         result += m_name + "()";
@@ -42,4 +37,4 @@ public:
     }
 };
 
-#endif // CSHARPMETHODUNIT_H
+#endif // JAVAMETHODUNIT_H
