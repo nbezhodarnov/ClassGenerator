@@ -40,4 +40,8 @@ HEADERS += \
     ClassUnit.h \
     MethodUnit.h \
     PrintOperatorUnit.h \
-    Unit.h
+    Unit.h \
+    JavaClasses/JavaClassUnit.h \
+    JavaClasses/JavaFactory.h \
+    JavaClasses/JavaMethodUnit.h \
+    JavaClasses/JavaPrintOperatorUnit.h

@@ -9,7 +9,7 @@
 
 class CSharpFactory: public AbstractFactory {
 public:
-    ClassUnit* CreateClassUnit(const std::string& name, Unit::Flags flags = CSharpClassUnit::PRIVATE) const {
+    ClassUnit* CreateClassUnit(const std::string& name, Unit::Flags flags = ClassUnit::PRIVATE, Unit::Flags = 0) const {
         return new CSharpClassUnit(name, flags);
     }
     MethodUnit* CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
@@ -18,7 +18,7 @@ public:
     PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
         return new CSharpPrintOperatorUnit(text);
     }
-    ~CSharpFactory() {};
+    ~CSharpFactory() {}
 };
 
 #endif // CSHARPFACTORY_H
