@@ -1,16 +1,14 @@
 #ifndef CPLUSPLUSMETHODUNIT_H
 #define CPLUSPLUSMETHODUNIT_H
 
-#include <vector>
-
 #include "AbstractClasses/Unit.h"
 #include "AbstractClasses/MethodUnit.h"
 
 class CPlusPlusMethodUnit: public MethodUnit {
 public:
-    CPlusPlusMethodUnit(const std::string& name, const std::string& returnType, Flags flags):
+    explicit CPlusPlusMethodUnit(const std::string& name, const std::string& returnType, Flags flags):
         MethodUnit(name, returnType, flags) {}
-    void add(const std::shared_ptr<Unit>& unit, Flags /* flags */ = 0) {
+    void add(Unit* unit, Flags /* flags */ = 0) {
         m_body.push_back(unit);
     }
     std::string compile(unsigned int level = 0) const {

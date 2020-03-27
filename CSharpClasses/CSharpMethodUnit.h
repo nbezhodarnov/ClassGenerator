@@ -1,20 +1,18 @@
 #ifndef CSHARPMETHODUNIT_H
 #define CSHARPMETHODUNIT_H
 
-#include <vector>
-
 #include "AbstractClasses/Unit.h"
 #include "AbstractClasses/MethodUnit.h"
 
 class CSharpMethodUnit: public MethodUnit {
 public:
-    CSharpMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
+    explicit CSharpMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
         MethodUnit(name, returnType, flags) {}
-    void add(const std::shared_ptr<Unit>& unit, Unit::Flags /* flags */ = 0) {
+    void add(Unit* unit, Unit::Flags /* flags */ = 0) {
         m_body.push_back(unit);
     }
     std::string compile(unsigned int level = 0) const {
-        std::string result = ""; //generateShift(level);
+        std::string result = "";
         if(m_flags & MethodUnit::ASYNC) {
             result += "asyns ";
         }

@@ -1,20 +1,18 @@
 #ifndef JAVAMETHODUNIT_H
 #define JAVAMETHODUNIT_H
 
-#include <vector>
-
 #include "AbstractClasses/Unit.h"
 #include "AbstractClasses/MethodUnit.h"
 
 class JavaMethodUnit: public MethodUnit {
 public:
-    JavaMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
+    explicit JavaMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags):
         MethodUnit(name, returnType, flags) {}
-    void add(const std::shared_ptr<Unit>& unit, Unit::Flags /* flags */ = 0) {
+    void add(Unit* unit, Unit::Flags /* flags */ = 0) {
         m_body.push_back(unit);
     }
     std::string compile(unsigned int level = 0) const {
-        std::string result = ""; //generateShift(level);
+        std::string result = "";
         if(m_flags & MethodUnit::SYNCHRONIZED) {
             result += "synchronized ";
         }
