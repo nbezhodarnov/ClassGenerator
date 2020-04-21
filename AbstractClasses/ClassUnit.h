@@ -27,7 +27,9 @@ public:
     virtual ~ClassUnit() { // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
         for (unsigned int i = 0; i < m_fields.size(); i++) {
             for (auto iterator = m_fields[i].begin(); iterator != m_fields[i].end(); iterator++) {
-                delete *iterator;
+                if (*iterator != nullptr) {
+                    delete *iterator;
+                }
             }
             m_fields[i].clear();
         }
