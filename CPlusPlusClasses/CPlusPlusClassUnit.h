@@ -11,7 +11,7 @@ public:
     explicit CPlusPlusClassUnit(const std::string& name): ClassUnit(name) { // конструктор
         m_fields.resize(3); // размер массива изменяется на 3, так как C++ имеет всего 3 типа доступа
     }
-    void add(Unit* unit, Unit::Flags flags) { // функция добавления методов в класс
+    void add(std::shared_ptr<Unit> unit, Unit::Flags flags) { // функция добавления методов в класс
         if (unit == nullptr) { // проверка на существование объекта
             return;
         }

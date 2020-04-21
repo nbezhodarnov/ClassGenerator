@@ -18,19 +18,18 @@ std::string generateProgram() {
             factory = new JavaFactory();
             break;
         }
-        ClassUnit* myClass(factory->CreateClassUnit("MyClass")); // создание класса
+        std::shared_ptr<ClassUnit> myClass(factory->CreateClassUnit("MyClass")); // создание класса
 
         // создание функций в классе
         myClass->add(factory->CreateMethodUnit("testFunc1", "void", 0), ClassUnit::PUBLIC);
         myClass->add(factory->CreateMethodUnit("testFunc2", "void", MethodUnit::STATIC), ClassUnit::PRIVATE);
         myClass->add(factory->CreateMethodUnit("testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST), ClassUnit::PUBLIC);
-        Unit* method = factory->CreateMethodUnit("testFunc4", "void", MethodUnit::STATIC);
+        std::shared_ptr<MethodUnit> method = factory->CreateMethodUnit("testFunc4", "void", MethodUnit::STATIC);
 
         method->add(factory->CreatePrintOperatorUnit(R"(Hello, world!\n)")); // добавление оператора вывода в функцию
         myClass->add(method, ClassUnit::PROTECTED); // добавление функции в класс
         result += myClass->compile() + '\n'; // генерация класса
         delete factory;
-        delete myClass;
     }
     return result;
 }

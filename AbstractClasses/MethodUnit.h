@@ -21,19 +21,14 @@ public:
 public:
     explicit MethodUnit(const std::string& name, const std::string& returnType, Flags flags):
         m_name(name), m_returnType(returnType), m_flags(flags) {} // конструктор
-    virtual void add(Unit* unit, Flags) = 0; // виртуальная функция добавления
+    virtual void add(std::shared_ptr<Unit> unit, Flags flags = 0) = 0; // виртуальная функция добавления
     virtual std::string compile(unsigned int level = 0) const = 0; // виртуальная функция генерации кода
-    virtual ~MethodUnit() { // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
-        for (auto iterator = m_body.begin(); iterator != m_body.end(); iterator++) {
-            delete *iterator;
-        }
-        m_body.clear();
-    }
+    virtual ~MethodUnit() {} // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
 protected:
     std::string m_name; // название функции
     std::string m_returnType; // возвращаемый тип
     Flags m_flags; // модификаторы
-    std::list<Unit*> m_body; // тело функции
+    std::list<std::shared_ptr<Unit>> m_body; // тело функции
 };
 
 #endif // METHODUNIT_H
