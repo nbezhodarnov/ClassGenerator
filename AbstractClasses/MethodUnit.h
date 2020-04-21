@@ -5,34 +5,35 @@
 
 #include "AbstractClasses/Unit.h"
 
+// Абстрактный класс MethodUnit, используемый для генерации функций
 class MethodUnit: public Unit {
 public:
-    enum Modifier {
-        STATIC       = 1,
-        CONST        = 2,
-        VIRTUAL      = 4,
-        ABSTRACT     = 8,
-        ASYNC        = 16,
-        UNSAVE       = 32,
-        FINAL        = 64,
-        SYNCHRONIZED  = 128
+    enum Modifier { // модификаторы функций
+        STATIC       = 1, //C++, C#, Java
+        CONST        = 2, //C++, C#, Java
+        VIRTUAL      = 4, //C++, C#
+        ABSTRACT     = 8, //C#, Java
+        ASYNC        = 16, //C#
+        UNSAVE       = 32, //C#
+        FINAL        = 64, //Java
+        SYNCHRONIZED  = 128 //Java
     };
 public:
     explicit MethodUnit(const std::string& name, const std::string& returnType, Flags flags):
-        m_name(name), m_returnType(returnType), m_flags(flags) {}
-    virtual void add(Unit* unit, Flags) = 0;
-    virtual std::string compile(unsigned int level = 0) const = 0;
-    virtual ~MethodUnit() {
+        m_name(name), m_returnType(returnType), m_flags(flags) {} // конструктор
+    virtual void add(Unit* unit, Flags) = 0; // виртуальная функция добавления
+    virtual std::string compile(unsigned int level = 0) const = 0; // виртуальная функция генерации кода
+    virtual ~MethodUnit() { // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
         for (auto iterator = m_body.begin(); iterator != m_body.end(); iterator++) {
             delete *iterator;
         }
         m_body.clear();
     }
 protected:
-    std::string m_name;
-    std::string m_returnType;
-    Flags m_flags;
-    std::list<Unit*> m_body;
+    std::string m_name; // название функции
+    std::string m_returnType; // возвращаемый тип
+    Flags m_flags; // модификаторы
+    std::list<Unit*> m_body; // тело функции
 };
 
 #endif // METHODUNIT_H
