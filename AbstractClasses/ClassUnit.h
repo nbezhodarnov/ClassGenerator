@@ -22,22 +22,12 @@ public:
     static const std::vector<std::string> ACCESS_MODIFIERS; // статический массив названий типов доступа
 public:
     explicit ClassUnit(const std::string& name): m_name(name) {} // конструктор
-    virtual void add(Unit* unit, Flags flags) = 0; // виртуальная функция добавления
+    virtual void add(std::shared_ptr<Unit> unit, Flags flags) = 0; // виртуальная функция добавления
     virtual std::string compile(unsigned int level = 0) const = 0; // виртуальная функция генерации кода
-    virtual ~ClassUnit() { // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
-        for (unsigned int i = 0; i < m_fields.size(); i++) {
-            for (auto iterator = m_fields[i].begin(); iterator != m_fields[i].end(); iterator++) {
-                if (*iterator != nullptr) {
-                    delete *iterator;
-                }
-            }
-            m_fields[i].clear();
-        }
-        m_fields.clear();
-    }
+    virtual ~ClassUnit() {} // виртуальный деструктор, очищающий память и позволяющий наследникам определять свои
 protected:
     std::string m_name; // название класса
-    using Fields = std::list<Unit*>; // сокращение типа данных для удобства
+    using Fields = std::list<std::shared_ptr<Unit>>; // сокращение типа данных для удобства
     std::vector<Fields> m_fields; // массив списков функций, распределённый по типам доступа
 };
 

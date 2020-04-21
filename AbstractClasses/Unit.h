@@ -10,7 +10,7 @@ public:
     using Flags = unsigned int; // сокращение типа данных для удобства
 public:
     virtual ~Unit() = default; // виртуальный деструктор, необходимый наследникам для определения собственного
-    virtual void add(Unit*, Flags = 0) { // виртуальная функция добавления
+    virtual void add(std::shared_ptr<Unit>, Flags = 0) { // виртуальная функция добавления
         throw std::runtime_error("Not supported");
     }
     virtual std::string compile(unsigned int level = 0) const = 0; // виртуальная функция генерации кода

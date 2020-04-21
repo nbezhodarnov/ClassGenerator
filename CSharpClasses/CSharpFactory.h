@@ -10,14 +10,14 @@
 // Конкретный класс, создающий объекты генерации кода на языке программирования C#
 class CSharpFactory: public AbstractFactory {
 public:
-    ClassUnit* CreateClassUnit(const std::string& name, Unit::Flags flags = ClassUnit::PRIVATE, Unit::Flags = 0) const {
-        return new CSharpClassUnit(name, flags); // создание объекта типа CSharpClassUnit
+    std::shared_ptr<ClassUnit> CreateClassUnit(const std::string& name, Unit::Flags flags = ClassUnit::PRIVATE, Unit::Flags = 0) const {
+        return std::shared_ptr<ClassUnit>(new CSharpClassUnit(name, flags)); // создание объекта типа CSharpClassUnit
     }
-    MethodUnit* CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
-        return new CSharpMethodUnit(name, returnType, flags); // создание объекта типа CSharpMethodUnit
+    std::shared_ptr<MethodUnit> CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
+        return std::shared_ptr<MethodUnit>(new CSharpMethodUnit(name, returnType, flags)); // создание объекта типа CSharpMethodUnit
     }
-    PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
-        return new CSharpPrintOperatorUnit(text); // создание объекта типа CSharpPrintOperatorUnit
+    std::shared_ptr<PrintOperatorUnit> CreatePrintOperatorUnit(const std::string& text) const {
+        return std::shared_ptr<PrintOperatorUnit>(new CSharpPrintOperatorUnit(text)); // создание объекта типа CSharpPrintOperatorUnit
     }
     ~CSharpFactory() {} // деструктор
 };

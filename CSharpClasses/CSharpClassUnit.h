@@ -18,7 +18,7 @@ public:
             throw std::runtime_error("CSharpClassUnit: Unknown access modifier.");
         }
     }
-    void add(Unit* unit, Unit::Flags flags) { // функция добавления функции в класс
+    void add(std::shared_ptr<Unit> unit, Unit::Flags flags) { // функция добавления функции в класс
         if (unit == nullptr) { // проверка на существование объекта
             return;
         }

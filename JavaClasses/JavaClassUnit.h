@@ -30,7 +30,7 @@ public:
             }
         }
     }
-    void add(Unit* unit, Unit::Flags flags) { // функция добавления функций в класс
+    void add(std::shared_ptr<Unit> unit, Unit::Flags flags) { // функция добавления функций в класс
         if (unit == nullptr) { // проверка на существование объекта
             return;
         }
