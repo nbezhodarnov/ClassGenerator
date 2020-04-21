@@ -7,18 +7,19 @@
 #include "CPlusPlusClasses/CPlusPlusMethodUnit.h"
 #include "CPlusPlusClasses/CPlusPlusPrintOperatorUnit.h"
 
+// Конкретный класс, создающий объекты для генерации кода на языке программирования C++
 class CPlusPlusFactory: public AbstractFactory {
 public:
-    ClassUnit* CreateClassUnit(const std::string& name, Unit::Flags, Unit::Flags) const {
-        return new CPlusPlusClassUnit(name);
+    std::shared_ptr<ClassUnit> CreateClassUnit(const std::string& name, Unit::Flags, Unit::Flags) const {
+        return std::shared_ptr<ClassUnit>(new CPlusPlusClassUnit(name)); // создание объекта типа CPlusPlusClassUnit
     }
-    MethodUnit* CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
-        return new CPlusPlusMethodUnit(name, returnType, flags);
+    std::shared_ptr<MethodUnit> CreateMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
+        return std::shared_ptr<MethodUnit>(new CPlusPlusMethodUnit(name, returnType, flags)); // создание объекта типа CPlusPlusMethodUnit
     }
-    PrintOperatorUnit* CreatePrintOperatorUnit(const std::string& text) const {
-        return new CPlusPlusPrintOperatorUnit(text);
+    std::shared_ptr<PrintOperatorUnit> CreatePrintOperatorUnit(const std::string& text) const {
+        return std::shared_ptr<PrintOperatorUnit>(new CPlusPlusPrintOperatorUnit(text)); // создание объекта типа CPlusPlusPrintOperatorUnit
     }
-    ~CPlusPlusFactory() {}
+    ~CPlusPlusFactory() {} // деструктор
 };
 
 #endif // CPLUSPLUSFACTORY_H
