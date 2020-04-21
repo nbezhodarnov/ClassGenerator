@@ -10,7 +10,9 @@ public:
     explicit CPlusPlusMethodUnit(const std::string& name, const std::string& returnType, Flags flags):
         MethodUnit(name, returnType, flags) {} // конструктор
     void add(Unit* unit, Flags /* flags */ = 0) { // функция добавления операторов в тело
-        m_body.push_back(unit);
+        if (unit != nullptr) { // проверка на существование объекта
+            m_body.push_back(unit);
+        }
     }
     std::string compile(unsigned int level = 0) const { // функция генерации функции
         std::string result = generateShift(level);

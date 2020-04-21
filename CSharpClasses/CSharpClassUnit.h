@@ -9,23 +9,28 @@ class CSharpClassUnit: public ClassUnit
 {
 public:
     explicit CSharpClassUnit(const std::string& name, Unit::Flags flags = ClassUnit::PRIVATE): ClassUnit(name) { // конструктор
-         m_fields.resize(ClassUnit::ACCESS_MODIFIERS.size()); // размер массива изменяется на 6, так как C++ имеет 6 типов доступа
+        m_fields.resize(ClassUnit::ACCESS_MODIFIERS.size()); // размер массива изменяется на 6, так как C++ имеет 6 типов доступа
 
-         // определение типа доступа класса
-         classAccessModifier = flags;
-         if (flags >= ClassUnit::ACCESS_MODIFIERS.size()) {
-             classAccessModifier = ClassUnit::PRIVATE;
-             throw std::runtime_error("CSharpClassUnit: There is no such access modifier.");
-         }
+        // определение типа доступа класса
+        classAccessModifier = flags;
+        if (flags >= ClassUnit::ACCESS_MODIFIERS.size()) {
+            classAccessModifier = ClassUnit::PRIVATE;
+            throw std::runtime_error("CSharpClassUnit: Unknown access modifier.");
+        }
     }
     void add(Unit* unit, Unit::Flags flags) { // функция добавления функции в класс
-         // опеределение типа доступа
-         int accessModifier = ClassUnit::PRIVATE;
-         if(flags < ClassUnit::ACCESS_MODIFIERS.size()) {
-              accessModifier = flags;
-         }
+        if (unit == nullptr) { // проверка на существование объекта
+            return;
+        }
+        // опеределение типа доступа
+        int accessModifier = ClassUnit::PRIVATE;
+        if(flags < ClassUnit::ACCESS_MODIFIERS.size()) {
+            accessModifier = flags;
+        } else {
+            throw std::runtime_error("CSharpClassUnit: Unknown access modifier.");
+        }
 
-         m_fields[accessModifier].push_back(unit); // добавление функции в список с соответствующим типом доступа
+        m_fields[accessModifier].push_back(unit); // добавление функции в список с соответствующим типом доступа
     }
     std::string compile(unsigned int level = 0) const { // функция генерации класса
         // объявление типа доступа

@@ -9,16 +9,21 @@ class CPlusPlusClassUnit: public ClassUnit
 {
 public:
     explicit CPlusPlusClassUnit(const std::string& name): ClassUnit(name) { // конструктор
-         m_fields.resize(3); // размер массива изменяется на 3, так как C++ имеет всего 3 типа доступа
+        m_fields.resize(3); // размер массива изменяется на 3, так как C++ имеет всего 3 типа доступа
     }
     void add(Unit* unit, Unit::Flags flags) { // функция добавления методов в класс
-         // идентификация типа доступа
-         int accessModifier = ClassUnit::PRIVATE;
-         if(flags < 3) {
-              accessModifier = flags;
-         }
+        if (unit == nullptr) { // проверка на существование объекта
+            return;
+        }
+        // идентификация типа доступа
+        int accessModifier = ClassUnit::PRIVATE;
+        if(flags < 3) {
+            accessModifier = flags;
+        } else {
+            throw std::runtime_error("CPlusPlusClassUnit: Unknown access modifier.");
+        }
 
-         m_fields[accessModifier].push_back(unit); // добавление метода в список с соответствующим типом доступа
+        m_fields[accessModifier].push_back(unit); // добавление метода в список с соответствующим типом доступа
     }
     std::string compile(unsigned int level = 0) const { // функция генерации класса
         std::string result = generateShift(level) + "class " + m_name + " {\n"; // объявление класса

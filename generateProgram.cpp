@@ -8,15 +8,15 @@ std::string generateProgram() {
     AbstractFactory* factory;
     for (int i = 0; i < 3; i++){ // создание конкретной фабрики (порядок: C++, C#, Java)
         switch (i) {
-            case 0:
-                factory = new CPlusPlusFactory();
-                break;
-            case 1:
-                factory = new CSharpFactory();
-                break;
-            case 2:
-                factory = new JavaFactory();
-                break;
+        case 0:
+            factory = new CPlusPlusFactory();
+            break;
+        case 1:
+            factory = new CSharpFactory();
+            break;
+        case 2:
+            factory = new JavaFactory();
+            break;
         }
         ClassUnit* myClass(factory->CreateClassUnit("MyClass")); // создание класса
 
